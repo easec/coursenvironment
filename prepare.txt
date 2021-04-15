@@ -1,0 +1,9 @@
+Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+
+New-VMSwitch -Name "InternalNATSwitch" -SwitchType Internal
+
+Get-NetAdapter
+
+New-NetIPAddress -IPAddress 192.168.1.1 -PrefixLength 24 -InterfaceIndex 15
+
+New-NetNat -Name "InternalNAT" -InternalIPInterfaceAddressPrefix 192.168.1.0/24
